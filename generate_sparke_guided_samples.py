@@ -150,7 +150,7 @@ def get_image_path(csv_path, img_id, prompt, algorithm, vscore_scale, guidance_f
     if logger is None:
         logger = make_logger(folder_name, 'logs')
 
-    return f'{bank_dir or folder_name}/{object_id}_{img_id}_{seed}_{prompt.replace("/", "_")}_{algorithm}_clip:{vscore_scale}:{guidance_freq}_cfg:{cfg}.png'
+    return f'{bank_dir or folder_name}/{object_id}_{img_id}_{seed}_{prompt.replace("/", "_")[:150]}_{algorithm}_clip:{vscore_scale}:{guidance_freq}_cfg:{cfg}.png'
 
 
 def setup():
@@ -301,8 +301,8 @@ def generate(dfs_n_csv_path, clip_for_guidance, pre_process_clip, clip_model, fe
                     **kwargs
                 )
                 image = out[0][0]
-                if F_M is not None:
-                    print(F_M[0].shape)
+                if rke_guided_sampler.F_M is not None:
+                    print(rke_guided_sampler.F_M[0].shape)
             else:
                 raise NotImplementedError
             image.save(image_path)
@@ -334,9 +334,10 @@ def generate(dfs_n_csv_path, clip_for_guidance, pre_process_clip, clip_model, fe
         torch.cuda.empty_cache()
         print(index)
         if index > 2 and (index+1) % 100 == 0 and args.vscore_scale != 0:
+            F_M, F_T = rke_guided_sampler.F_M, rke_guided_sampler.F_T
             with torch.no_grad():
                 for kernel_function in ['cosine', 'gaussian']:
-                    k_x = eval_model.cosine_kernel(F_M[0], batchsize=32) if kernel_function == 'cosine' else eval_model.gaussian_kernel(F_M[0], sigma=args.sigma_image)
+                    k_x = eval_model.cosine_kernel(F_M[0], batchsize=16) if kernel_function == 'cosine' else eval_model.gaussian_kernel(F_M[0], sigma=args.sigma_image, batchsize=16)
                     if not 'cond' in args.algorithm:  # TODO fix it (buggy when it is not conditional)
                         F_T = F_M
                     k_t = eval_model.cosine_kernel(F_T[0], batchsize=32) if kernel_function == 'cosine' else eval_model.gaussian_kernel(F_T[0], sigma=args.sigma_text)
