@@ -27,3 +27,51 @@ skip-magic-trailing-comma = false
 
 # Like Black, automatically detect the appropriate line ending.
 line-ending = "auto"
+
+[project]
+name = "diffusers"
+version = "0.32.0.dev0"
+description = "Diffusers"
+authors = [{name = "The HuggingFace Team", email = "diffusers@huggingface.co"}]
+requires-python = ">=3.12"
+dependencies = [
+    "Pillow",
+    "accelerate>=0.31.0",
+    "compel==0.1.8",
+    "datasets",
+    "filelock",
+    "hf-doc-builder>=0.3.0",
+    "huggingface-hub>=0.27.0",
+    "requests-mock==1.10.0",
+    "importlib_metadata",
+    "invisible-watermark>=0.2.0",
+    "isort>=5.5.4",
+    "Jinja2",
+    "k-diffusion>=0.0.12",
+    "torchsde",
+    "note_seq",
+    "librosa",
+    "numpy",
+    "parameterized",
+    "peft>=0.6.0",
+    "protobuf>=3.20.3,<4",
+    "pytest",
+    "pytest-timeout",
+    "pytest-xdist",
+    "ruff==0.1.5",
+    "safetensors>=0.3.1",
+    "sentencepiece>=0.1.91,!=0.1.92",
+    "GitPython<3.1.19",
+    "scipy",
+    "onnx",
+    "regex!=2019.12.17",
+    "requests",
+    "tensorboard",
+    "tiktoken>=0.7.0",
+    "torch>=1.4",
+    "torchvision",
+    "transformers>=4.41.2",
+    "urllib3<=2.0.0",
+    "black",
+    "phonemizer",
+]
