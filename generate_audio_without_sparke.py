@@ -8,8 +8,8 @@ import logging
 import scipy.io.wavfile
 
 # 1. IMPORT YOUR MODIFIED PIPELINE AND RKE UTILS
-from diffusers.pipelines.audioldm2.pipeline_audioldm2_sparke import AudioLDM2Pipeline # <--- Correct Import
-from diffusers.pipelines.rke_guidance_utils_audioldm2 import RKEGuidedSampling
+from diffusers.pipelines.audioldm2.pipeline_audioldm2 import AudioLDM2Pipeline # <--- Correct Import
+
 
 # Set up logging
 logging.basicConfig(
@@ -31,39 +31,9 @@ print(f"Using device: {device}, torch_dtype: {torch_dtype}")
 repo_id = "cvssp/audioldm2-music" # <--- Updated to AudioLDM2 Music Model
 pipe = AudioLDM2Pipeline.from_pretrained(repo_id, torch_dtype=torch_dtype).to(device) # <--- Updated class name
 
-# 3. SET UP RKE GUIDED SAMPLING
-rke_guided_sampler = RKEGuidedSampling(
-    algorithm="cond-vendi", 
-    kernel="gaussian",
-    sigma_image=1.0,  
-    sigma_text=1.0,
-    max_bank_size=1000,
-    use_latents_for_guidance=True,
-    model_name="audioldm",
-    model=pipe
-)
 
-# 4. GUIDANCE PARAMETERS
-guidance_kwargs = dict(
-    num_inference_steps=100,      # <--- 100 is best for V2 (200 takes too long)
-    guidance_scale=5.0,           # <--- Added to force prompt adherence in V2
-    audio_length_in_s=10.0,
-    num_waveforms_per_prompt=1,
-    
-    # SPARKE Specific Parameters
-    rke_guided_sampler=rke_guided_sampler,
-    criteria_guidance_scale=0.05, 
-    clap_for_guidance=pipe.text_encoder,   # Perfect: this correctly targets CLAP in AudioLDM2
-    guidance_freq=1,
-    criteria="vscore_clap",
-    F_M=None,
-    F_T=None,
-    F_M_real=None,
-    F_T_real=None,
-    beta=0,
-    regularize=False,
-    regularize_weight=0,
-)
+
+
 
 # 5. PROMPTS TO GENERATE
 prompts = [
@@ -113,7 +83,7 @@ prompts1 = [
 ]
 
 
-output_dir = "sparke_audioldm2_audio_outputs_general"
+output_dir = "audio_outputs_no_sparke"
 os.makedirs(output_dir, exist_ok=True)
 
 # 6. GENERATE AND SAVE AUDIO
@@ -123,8 +93,7 @@ for i, prompt in enumerate(prompts, start=1):
     
     output = pipe(
         prompt=prompt,
-        generator=generator,
-        **guidance_kwargs
+        generator=generator
     )
 
     audio = output.audios[0]
@@ -133,8 +102,12 @@ for i, prompt in enumerate(prompts, start=1):
     audio = np.clip(audio, -1.0, 1.0)
     audio_int16 = (audio * 32767.0).astype(np.int16)
     
-    output_path = os.path.join(output_dir, f"sparke_audio_{i}.wav")
+    output_path = os.path.join(output_dir, f"baseline_audio{i}.wav")
     scipy.io.wavfile.write(output_path, rate=16000, data=audio_int16) # Save the int16 version
     print(f"Saved {output_path}")
 
 print("All audio files generated successfully!")
+
+
+#output_dir = "audio_outputs_no_sparke"
+#output_path = os.path.join(output_dir, f"baseline_audio{i}.wav")

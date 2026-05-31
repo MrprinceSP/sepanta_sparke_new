@@ -16,7 +16,7 @@ except:
 
 class RKEGuidedSampling:
     """
-    RKE-guided sampling class for Stable Diffusion.
+    RKE-guided sampling class for Stable Diffusion and AudioLDM.
 
     Example:
     # Initialize the RKE-guided sampler
@@ -224,7 +224,7 @@ class RKEGuidedSampling:
                 return 1 / (frobenius_norm_squared + 1e-8)
 
         elif self.algorithm == 'cond-rke':
-            if M.shape[0] > 10 and feature_m is not None:
+            if M.shape[0] > 10 and feature_m is not None: 
                 if kernel == 'cosine':
                     similarities = (
                                         F.cosine_similarity(feature_m[-1].unsqueeze(0), feature_m) *
@@ -252,14 +252,37 @@ class RKEGuidedSampling:
                 return 1 / frobenius_norm_squared
 
         elif self.algorithm == 'cond-vendi':
-            XoY = M * M_text  # Hadamard product
-            S_AB = XoY / torch.trace(XoY)
-            U, _, VT = torch.linalg.svd(S_AB)
-            S = torch.diag(torch.mm(U.T, torch.mm(S_AB, VT.T)))
-            S = S / S.sum()
-            entropy = -torch.sum(S * torch.log(S))
-            rank = torch.exp(entropy)
-            return rank
+            print("Conditionl Vedndi Conditional Vendi Conditional Vendi Conditional Vendi Conditional Vendi Conditional Vendi Conditional Vendi Conditional ")
+            # XoY = M * M_text  # Hadamard product
+            # S_AB = XoY / torch.trace(XoY)
+            # U, _, VT = torch.linalg.svd(S_AB)
+            # S = torch.diag(torch.mm(U.T, torch.mm(S_AB, VT.T)))
+            # S = S / S.sum()
+            # entropy = -torch.sum(S * torch.log(S))
+            # rank = torch.exp(entropy)
+            # return rank
+            # --- Matrix Preparation ---
+            XoY = M * M_text  # Joint similarity matrix (Hadamard product)
+            S_AB = XoY / torch.trace(XoY) # Normalized Joint matrix
+            S_B = M_text / torch.trace(M_text) # Normalized Text matrix
+
+            # --- 1. Compute Joint Entropy H(X, Y) ---
+            eig_AB = torch.linalg.eigvalsh(S_AB)
+            eig_AB = torch.clamp(eig_AB, min=1e-12)
+            eig_AB = eig_AB / eig_AB.sum()
+            entropy_joint = -torch.sum(eig_AB * torch.log(eig_AB))
+
+            # --- 2. Compute Text Entropy H(Y) ---
+            eig_B = torch.linalg.eigvalsh(S_B)
+            eig_B = torch.clamp(eig_B, min=1e-12)
+            eig_B = eig_B / eig_B.sum()
+            entropy_text = -torch.sum(eig_B * torch.log(eig_B))
+
+            # --- 3. Compute Conditional Vendi Rule ---
+            # H(X|Y) = H(X, Y) - H(Y)
+            conditional_entropy = torch.clamp(entropy_joint - entropy_text, min=0.0)
+            
+            return torch.exp(conditional_entropy)
 
         elif self.algorithm == 'vendi':
             U, _, VT = torch.linalg.svd(M.to(torch.float32))
@@ -339,6 +362,7 @@ class RKEGuidedSampling:
             features_ = clip_for_guidance.encode_image(image).to(torch.float32)
         else:
             features_ = latents.view(1, -1)
+            
         features_text = None
         if 'cond' in self.algorithm:
             # If prompt_embeds are provided explicitly, use them first
@@ -348,12 +372,25 @@ class RKEGuidedSampling:
                 # Mean pool the sequence length so it matches the [1, Dim] shape
                 features_text = kwargs['prompt_embeds'].mean(dim=1).to(torch.float32)
             else:
-                # Fallback to SDXL CLIP behavior
-                features_text = clip_for_guidance.encode_text(
-                    clip.tokenize([prompt] * features_.shape[0]).to(features_.device)).to(torch.float32)
+                # --- AUDIO/SDXL FALLBACK BLOCK ---
+                # Check if the provided guidance model is a CLAP model
+                if hasattr(clip_for_guidance, 'get_text_features') or hasattr(clip_for_guidance, 'text_model'):
+                    from transformers import AutoTokenizer
+                    tokenizer = AutoTokenizer.from_pretrained("laion/clap-htsat-unfused")
+                    inputs = tokenizer([prompt] * features_.shape[0], padding=True, truncation=True, return_tensors="pt").to(features_.device)
+                    
+                    if hasattr(clip_for_guidance, 'get_text_features'):
+                        features_text = clip_for_guidance.get_text_features(**inputs).to(torch.float32)
+                    else:
+                        features_text = clip_for_guidance(**inputs).text_embeds.to(torch.float32)
+                else:
+                    # Fallback to standard SDXL CLIP behavior
+                    features_text = clip_for_guidance.encode_text(
+                        clip.tokenize([prompt] * features_.shape[0]).to(features_.device)).to(torch.float32)
 
             if features_text.ndim == 1:
                 features_text = features_text.unsqueeze(0)
+                
         features_ = features_ / features_.norm(2, dim=1, keepdim=True)
         rank = 0
         if self.F_M is not None:  # and index < 45:
