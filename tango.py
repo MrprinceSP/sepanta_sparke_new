@@ -17,6 +17,9 @@ from audioldm.variational_autoencoder import AutoencoderKL
 
 class Tango:
     def __init__(self, name="declare-lab/tango", device="cuda:0"):
+        import tempfile
+        import json
+        import os
         
         print("DEBUG: Starting Tango init")
         
@@ -26,42 +29,47 @@ class Tango:
         stft_config = json.load(open("{}/stft_config.json".format(path)))
         main_config = json.load(open("{}/main_config.json".format(path)))
         
-        # Load the UNet config directly from local file
-        unet_config_path = os.path.join(os.path.dirname(__file__), 'tango-master', 'tango2', 'configs', 'diffusion_model_config.json')
-        with open(unet_config_path, 'r') as f:
-            unet_config = json.load(f)
-        
-        # Remove metadata keys that shouldn't be passed to constructor
-        unet_config_clean = {k: v for k, v in unet_config.items() if not k.startswith('_')}
-        
-        print("DEBUG: unet_config loaded, len:", len(unet_config))
-        print("DEBUG: unet_config_clean len:", len(unet_config_clean))
-        print("DEBUG: sample keys:", list(unet_config.keys())[:5])
-        
-        main_config["unet_model_config"] = unet_config_clean
-        if "unet_model_config_path" in main_config:
-            del main_config["unet_model_config_path"]  # Remove the path key entirely
-        main_config["unet_model_config_path"] = None
-        
-        print("DEBUG: unet_config_clean keys:", list(unet_config_clean.keys()))
-        print("DEBUG: main_config unet_model_config keys:", list(main_config.get("unet_model_config", {}).keys()))
-        
-        print("DEBUG: main_config keys:", list(main_config.keys()))
-        print("DEBUG: main_config['unet_model_config'] is not None:", main_config.get("unet_model_config") is not None)
-        print("DEBUG: type of main_config['unet_model_config']:", type(main_config.get("unet_model_config")))
-        
         self.vae = AutoencoderKL(**vae_config).to(device)
         self.stft = TacotronSTFT(**stft_config).to(device)
+        
+        # 1. Clean up old/unused keys
+        main_config.pop("unet_model_config", None)
+        
+        # 2. Locate UNet config dict dynamically
+        unet_dict = None
+        
+        # Check inside snapshot first
+        snapshot_config_file = os.path.join(path, "diffusion_model_config.json")
+        if os.path.exists(snapshot_config_file):
+            with open(snapshot_config_file, "r") as f:
+                unet_dict = json.load(f)
+        else:
+            # Check local tango-master repository fallback
+            local_unet_path = os.path.join(
+                os.path.dirname(__file__), 
+                "tango-master", "tango2", "configs", "diffusion_model_config.json"
+            )
+            if os.path.exists(local_unet_path):
+                with open(local_unet_path, "r") as f:
+                    unet_dict = json.load(f)
+
+        if unet_dict is None:
+            raise FileNotFoundError("Could not locate UNet configuration file.")
+
+        # Filter private metadata keys if any exist
+        unet_dict_clean = {k: v for k, v in unet_dict.items() if not k.startswith('_')}
+
+        # 3. Create a clean temporary directory with config.json for diffusers
+        self.temp_dir = tempfile.TemporaryDirectory()
+        temp_config_path = os.path.join(self.temp_dir.name, "config.json")
+        
+        with open(temp_config_path, "w") as f:
+            json.dump(unet_dict_clean, f)
+            
+        main_config["unet_model_config_path"] = self.temp_dir.name
+        
         print("DEBUG: About to call AudioDiffusion")
-        # Pass parameters explicitly
-        self.model = AudioDiffusion(
-            text_encoder_name=main_config["text_encoder_name"],
-            scheduler_name=main_config["scheduler_name"],
-            unet_model_config=unet_config_clean,
-            snr_gamma=main_config.get("snr_gamma"),
-            freeze_text_encoder=main_config.get("freeze_text_encoder", True),
-            uncondition=main_config.get("uncondition", False)
-        ).to(device)
+        self.model = AudioDiffusion(**main_config).to(device)
         
         vae_weights = torch.load("{}/pytorch_model_vae.bin".format(path), map_location=device)
         stft_weights = torch.load("{}/pytorch_model_stft.bin".format(path), map_location=device)
@@ -71,7 +79,7 @@ class Tango:
         self.stft.load_state_dict(stft_weights)
         self.model.load_state_dict(main_weights)
 
-        print ("Successfully loaded checkpoint from:", name)
+        print("Successfully loaded checkpoint from:", name)
         
         self.vae.eval()
         self.stft.eval()

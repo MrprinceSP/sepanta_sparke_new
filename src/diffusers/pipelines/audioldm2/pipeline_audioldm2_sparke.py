@@ -863,6 +863,7 @@ class AudioLDM2Pipeline(DiffusionPipeline):
         rke_guided_sampler: Optional[Any] = None,
         criteria_guidance_scale: float = 0.0,
         guidance_freq: int = 1,
+        rff_dim: int = 3000,
         criteria: str = 'vscore_clap',
         clap_for_guidance: Optional[Any] = None,
         F_M: Optional[torch.Tensor] = None,
@@ -1036,10 +1037,17 @@ class AudioLDM2Pipeline(DiffusionPipeline):
             generator,
             latents,
         )
-
+        sig_x=0.6
+        sig_y=0.3
+        
+        omegas_x = torch.randn((32000, rff_dim), device=device)* (1.0 / sig_x)
+        omegas_y = torch.randn((512, rff_dim), device=device)* (1.0 / sig_y)
         # 6. Prepare extra step kwargs
         extra_step_kwargs = self.prepare_extra_step_kwargs(generator, eta)
 
+
+        F_M_prev = F_M
+        F_T_prev = F_T
         # 7. Denoising loop
         num_warmup_steps = len(timesteps) - num_inference_steps * self.scheduler.order
         with self.progress_bar(total=num_inference_steps) as progress_bar:
@@ -1065,7 +1073,7 @@ class AudioLDM2Pipeline(DiffusionPipeline):
 
                 # **** SPARKE / RKE GUIDANCE BLOCK ****
                 # Only apply SPARKE during the first 90% of inference
-                if rke_guided_sampler is not None and criteria_guidance_scale != 0 and clap_for_guidance is not None and i < (num_inference_steps * 0.9):
+                if rke_guided_sampler is not None and criteria_guidance_scale != 0 and clap_for_guidance :
                     # Isolate the positive prompt embeddings (ignoring negative embeddings)
                     txt_embd_for_guidance = prompt_embeds.chunk(2)[1] if do_classifier_free_guidance else prompt_embeds
                     
@@ -1087,6 +1095,8 @@ class AudioLDM2Pipeline(DiffusionPipeline):
                             F_M_real=F_M_real,
                             F_T_real=F_T_real,
                             beta=beta,
+                            omegas_x=omegas_x,
+                            omegas_y=omegas_y,
                         )
                         
                         if torch.isnan(grads).any() or torch.isinf(grads).any():
@@ -1094,7 +1104,14 @@ class AudioLDM2Pipeline(DiffusionPipeline):
                                 logger_.info("Skipping gradient update due to NaN or Inf in grads.")
                         else:
                             # Update latents with the computed diversity/alignment gradient
-                            latents = latents + grads
+                            if(i%40==0):
+                                F_M_prev = F_M
+                                F_T_prev = F_T
+                                grads = grads*2
+                                latents = latents + grads
+
+                            F_M= F_M_prev
+                            F_T= F_T_prev
                 # **** END SPARKE / RKE GUIDANCE BLOCK ****
 
                 # compute the previous noisy sample x_t -> x_t-1
