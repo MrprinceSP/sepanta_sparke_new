@@ -179,7 +179,7 @@ class RKEGuidedSampling:
         return F_, M_
 
     def get_rank(self, M, M_text=None, feature_m=None, feature_t=None, kernel='cosine', sigma_image=None,
-                 sigma_text=None, n_samples=50_000, batch_size=256, rff_dim=3000,omegas_x=None, omegas_y=None):
+                 sigma_text=None, n_samples=50_000, batch_size=256, rff_dim=2048,omegas_x=None, omegas_y=None):
         """
         Calculate the diversity term for Diffusion Model guidance.
 
@@ -224,6 +224,7 @@ class RKEGuidedSampling:
                 return 1 / (frobenius_norm_squared + 1e-8)
 
         elif self.algorithm == 'cond-rke':
+
             if M.shape[0] > 10 and feature_m is not None: 
                 if kernel == 'cosine':
                     similarities = (
@@ -501,6 +502,7 @@ class RKEGuidedSampling:
             #     criteria_guidance_scale = 0.08
             # elif index < 20:
             # criteria_guidance_scale = 0.08
+            print(f'Shape of F_ and F_T_: {F_.shape}, {F_T_.shape}')
             F_, M_ = self.get_F_M(M=self.F_M[1], F=self.F_M[0], f=features_, kernel=self.kernel, sigma=self.sigma[0])
             if 'cond' in self.algorithm:
                 F_T_, T_ = self.get_F_M(M=self.F_T[1], F=self.F_T[0], f=features_text, kernel=self.kernel, sigma=self.sigma[1])

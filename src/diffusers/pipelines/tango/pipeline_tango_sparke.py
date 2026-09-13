@@ -399,7 +399,7 @@ class TangoPipeline(DiffusionPipeline, StableDiffusionMixin):
         rke_guided_sampler: Optional[Any] = None,
         criteria_guidance_scale: float = 0.0,
         guidance_freq: int = 1,
-        rff_dim: int = 3000,
+        rff_dim: int = 2048,
         criteria: str = 'vscore_clap',
         clap_for_guidance: Optional[Any] = None,
         F_M: Optional[torch.Tensor] = None,
@@ -478,11 +478,13 @@ class TangoPipeline(DiffusionPipeline, StableDiffusionMixin):
             generator,
             latents,
         )
+        F_M_prev = F_M
+        F_T_prev = F_T
         sig_x=0.6
         sig_y=0.3
         
         omegas_x = torch.randn((32000, rff_dim), device=device)* (1.0 / sig_x)
-        omegas_y = torch.randn((512, rff_dim), device=device)* (1.0 / sig_y)
+        omegas_y = torch.randn((1024, rff_dim), device=device)* (1.0 / sig_y)
         
         extra_step_kwargs = self.prepare_extra_step_kwargs(generator, eta)
         num_warmup_steps = len(timesteps) - num_inference_steps * self.scheduler.order
@@ -549,7 +551,7 @@ class TangoPipeline(DiffusionPipeline, StableDiffusionMixin):
                                 logger_.info("Skipping gradient update due to NaN or Inf in grads.")
                         else:
                             # Update latents with the computed diversity/alignment gradient
-                            if(i%20==0):
+                            if(i%40==0 ):
                                 F_M_prev = F_M
                                 F_T_prev = F_T
                                 grads = grads

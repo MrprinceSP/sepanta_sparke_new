@@ -73,7 +73,7 @@ pipe = TangoPipeline(
 # Note: Since we implemented the prompt_embeds fix inside RKEGuidedSampling, 
 # use_latents_for_guidance MUST be True for it to utilize FLAN-T5 embeddings and audio latents.
 rke_guided_sampler = RKEGuidedSampling(
-    algorithm="cond-vendi", 
+    algorithm="cond-rke-FKEA", 
     kernel="gaussian",
     sigma_image=0.6,     # Operates on the audio latents
     sigma_text=0.3,      # Operates on the pooled FLAN-T5 embeddings

@@ -197,7 +197,8 @@ all_audio_paths = []
 chosen_numbers = list(range(1, 80))  # Adjust this range based on the number of audio files you have
 for k in chosen_numbers:
     #pattern = f"C:\\Users\\sepan\\sparke-photo to audio\\sparke_audioldm2_audio_outputs_general\\sparke_audio_{k}.wav"
-    #pattern = f"C:\\Users\\sepan\\sparke-photo to audio\\tango_sounds\\tango_jazz_{k}.wav"
+    #pattern = f"C:\\Users\\sepan\\sparke-photo to audio\\tango_sounds_sparke\\sparke_audio_{k}.wav"
+    pattern = f"C:\\Users\\sepan\\sparke-photo to audio\\tango_sounds\\sparke_audio_{k}.wav"
     found_files = glob.glob(pattern)
     if found_files:
         all_audio_paths.append(found_files[0])
