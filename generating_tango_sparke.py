@@ -61,6 +61,7 @@ vae.vocoder.to(device)
 # 2c. Manually initialize your custom Diffusers pipeline
 # (Note: If your custom TangoPipeline __init__ uses slightly different 
 # variable names, adjust them below to match)
+
 pipe = TangoPipeline(
     vae=vae,
     vocoder=vae.vocoder,
@@ -289,7 +290,7 @@ output_dir = "tango_sounds_sparke"
 os.makedirs(output_dir, exist_ok=True)
 
 # 6. GENERATE AND SAVE AUDIO
-for i, prompt in enumerate(prompts1, start=1):
+for i, prompt in enumerate(prompts, start=1):
     print(f"Generating audio {i}: {prompt}")
     generator = torch.Generator(device=device).manual_seed(i)
     
