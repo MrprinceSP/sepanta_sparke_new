@@ -1,80 +1,80 @@
 clipping_fraction,dsp_issues,file,good,peak,qwen_clarity_score,qwen_good,qwen_has_severe_noise,qwen_reason,rms_db,score,spectral_flatness,zero_crossing_rate
-0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_48.wav,True,0.11951,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the music.,-36.23,100.0,0.1831,0.2121
-0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_67.wav,True,0.90894,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the clarity of the industrial techno beat.,-30.73,100.0,0.1722,0.2606
-0.0,harsh_hiss,C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_12.wav,True,0.38327,8.0,True,False,The recording has some background noise but it is not severe and does not obscure the clarity of the music.,-36.43,70.0,0.1883,0.4363
-0.0,harsh_hiss,C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_25.wav,True,0.54776,7.0,True,False,The recording has some distortion but is generally clear and easy to listen to.,-30.79,70.0,0.1289,0.3845
-0.0,harsh_hiss,C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_58.wav,True,0.73297,8.0,True,False,The recording has some background noise but is generally clear and well-balanced.,-33.4,70.0,0.2374,0.3802
-0.0,high_spectral_noise,C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_57.wav,True,0.4809,8.0,True,False,The audio has some background noise but it is not severe and does not obscure the main melody.,-37.32,60.0,0.305,0.2947
-0.000671,high_spectral_noise,C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_59.wav,True,0.99994,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the music.,-32.34,60.0,0.268,0.2768
-0.0,too_quiet,C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_40.wav,False,0.19327,,,,,-41.59,50.0,0.2257,0.2836
-0.0,too_quiet,C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_68.wav,False,0.17831,,,,,-39.43,50.0,0.1552,0.2625
-0.0,"high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_20.wav,False,0.3045,,,,,-37.29,30.0,0.417,0.4345
-0.0,"high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_21.wav,False,0.81204,,,,,-35.54,30.0,0.322,0.3785
-0.0,"high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_31.wav,False,0.29495,,,,,-37.66,30.0,0.3056,0.498
-0.0,"high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_33.wav,False,0.57098,,,,,-32.06,30.0,0.3296,0.3118
-0.0,"high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_5.wav,False,0.85464,,,,,-36.15,30.0,0.3733,0.4422
-0.0,"high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_63.wav,False,0.46811,,,,,-33.77,30.0,0.4431,0.4867
-0.0,"high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_70.wav,False,0.99539,,,,,-37.56,30.0,0.3664,0.4353
-0.0,"high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_8.wav,False,0.55228,,,,,-36.55,30.0,0.4844,0.4087
-0.0,"too_quiet, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_38.wav,False,0.40289,,,,,-39.11,20.0,0.25,0.4323
-0.0,"too_quiet, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_60.wav,False,0.24536,,,,,-42.21,20.0,0.2117,0.3074
-0.0,"too_quiet, high_spectral_noise",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_10.wav,False,0.0712,,,,,-42.41,10.0,0.312,0.2714
-0.0,"too_quiet, high_spectral_noise",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_19.wav,False,0.11023,,,,,-41.82,10.0,0.3336,0.2956
-0.0,"too_quiet, high_spectral_noise",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_24.wav,False,0.22668,,,,,-39.18,10.0,0.2746,0.2889
-0.0,"too_quiet, high_spectral_noise",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_28.wav,False,0.20734,,,,,-50.92,10.0,0.3371,0.2956
-0.0,"too_quiet, high_spectral_noise",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_39.wav,False,0.17746,,,,,-43.25,10.0,0.2571,0.2436
-0.0,"too_quiet, high_spectral_noise",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_42.wav,False,0.13641,,,,,-46.07,10.0,0.2797,0.2855
-0.0,"too_quiet, high_spectral_noise",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_55.wav,False,0.16272,,,,,-42.96,10.0,0.2975,0.28
-0.0,"too_quiet, high_spectral_noise",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_65.wav,False,0.27664,,,,,-40.83,10.0,0.2679,0.2817
-0.0,"too_quiet, high_spectral_noise",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_78.wav,False,0.78705,,,,,-44.08,10.0,0.2886,0.2823
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_1.wav,False,0.06873,,,,,-40.5,0.0,0.517,0.4874
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_11.wav,False,0.116,,,,,-38.52,0.0,0.51,0.4689
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_13.wav,False,0.40048,,,,,-40.09,0.0,0.3249,0.3329
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_14.wav,False,0.04736,,,,,-44.53,0.0,0.5115,0.4447
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_15.wav,False,0.11472,,,,,-46.29,0.0,0.487,0.4398
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_16.wav,False,0.17712,,,,,-40.16,0.0,0.5159,0.4201
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_17.wav,False,0.20044,,,,,-41.04,0.0,0.4786,0.3943
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_18.wav,False,0.134,,,,,-42.39,0.0,0.4496,0.4181
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_2.wav,False,0.0723,,,,,-41.96,0.0,0.4518,0.3739
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_22.wav,False,0.21823,,,,,-40.47,0.0,0.3843,0.3662
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_23.wav,False,0.19116,,,,,-42.12,0.0,0.3573,0.4173
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_26.wav,False,0.082,,,,,-43.65,0.0,0.3423,0.4186
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_27.wav,False,0.44824,,,,,-39.29,0.0,0.3041,0.3514
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_29.wav,False,0.14597,,,,,-42.73,0.0,0.4628,0.364
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_3.wav,False,0.24512,,,,,-42.67,0.0,0.324,0.5948
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_30.wav,False,0.14749,,,,,-45.68,0.0,0.2862,0.3051
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_32.wav,False,0.37396,,,,,-42.84,0.0,0.3095,0.3197
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_34.wav,False,0.14038,,,,,-48.65,0.0,0.2917,0.3013
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_35.wav,False,0.22537,,,,,-45.03,0.0,0.3752,0.3398
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_36.wav,False,0.26804,,,,,-43.53,0.0,0.4119,0.4277
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_37.wav,False,0.36826,,,,,-42.14,0.0,0.3091,0.3068
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_4.wav,False,0.11087,,,,,-43.07,0.0,0.4502,0.4264
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_41.wav,False,0.11887,,,,,-40.68,0.0,0.51,0.4512
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_43.wav,False,0.12894,,,,,-44.9,0.0,0.3875,0.3485
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_44.wav,False,0.2796,,,,,-40.37,0.0,0.4137,0.4558
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_45.wav,False,0.05905,,,,,-39.21,0.0,0.4123,0.5723
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_46.wav,False,0.21841,,,,,-39.28,0.0,0.4055,0.3559
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_47.wav,False,0.13428,,,,,-43.02,0.0,0.352,0.3259
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_49.wav,False,0.09396,,,,,-42.39,0.0,0.3123,0.3506
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_50.wav,False,0.08838,,,,,-46.48,0.0,0.3483,0.3983
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_51.wav,False,0.08087,,,,,-42.08,0.0,0.3041,0.3181
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_52.wav,False,0.67368,,,,,-40.39,0.0,0.4171,0.4729
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_53.wav,False,0.10065,,,,,-40.02,0.0,0.2909,0.3325
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_54.wav,False,0.09781,,,,,-39.97,0.0,0.469,0.5217
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_56.wav,False,0.14319,,,,,-38.8,0.0,0.3622,0.3787
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_6.wav,False,0.51648,,,,,-38.29,0.0,0.4097,0.3977
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_61.wav,False,0.23972,,,,,-38.48,0.0,0.3538,0.3986
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_62.wav,False,0.62036,,,,,-44.48,0.0,0.2983,0.3327
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_64.wav,False,0.14636,,,,,-46.6,0.0,0.4298,0.4442
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_66.wav,False,0.04996,,,,,-46.51,0.0,0.4725,0.4597
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_69.wav,False,0.18613,,,,,-46.28,0.0,0.3387,0.3897
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_7.wav,False,0.09644,,,,,-43.01,0.0,0.2916,0.4114
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_71.wav,False,0.53882,,,,,-41.43,0.0,0.3314,0.3218
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_72.wav,False,0.20932,,,,,-38.59,0.0,0.3157,0.4676
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_73.wav,False,0.05231,,,,,-47.25,0.0,0.317,0.3062
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_74.wav,False,0.03427,,,,,-45.63,0.0,0.4585,0.4984
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_75.wav,False,0.26007,,,,,-44.87,0.0,0.4368,0.4093
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_76.wav,False,0.20374,,,,,-44.22,0.0,0.4264,0.4018
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_77.wav,False,0.34534,,,,,-40.2,0.0,0.3946,0.3862
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_79.wav,False,0.74854,,,,,-41.93,0.0,0.3076,0.3235
-0.0,"too_quiet, high_spectral_noise, harsh_hiss",C:\Users\sepan\sparke-photo to audio\tango_sounds\sparke_audio_9.wav,False,0.19284,,,,,-42.32,0.0,0.4108,0.3333
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_1.wav,True,0.81152,8.0,True,False,The recording has some background noise but is generally clear and has a pleasant synth-pop feel.,-28.12,100.0,0.1736,0.2378
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_10.wav,True,0.40991,8.0,True,False,"The recording has minimal background noise and is relatively clear, presenting an overall pleasant listening experience.",-24.19,100.0,0.0272,0.0938
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_11.wav,True,0.48706,7.0,True,False,The recording has some background noise but is generally clear and well-balanced.,-21.74,100.0,0.0213,0.121
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_13.wav,True,0.58105,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the clarity of the guitar riff.,-22.06,100.0,0.0389,0.099
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_14.wav,True,0.521,7.0,True,False,The recording has some background noise but is generally clear and easy to listen to.,-20.59,100.0,0.0179,0.0938
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_15.wav,True,0.56787,7.0,True,False,The recording has some background noise but is generally clear and has good acoustics.,-21.78,100.0,0.0461,0.1197
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_16.wav,True,0.46826,7.0,True,False,The recording has some background noise but is generally clear and easy to listen to.,-21.02,100.0,0.0383,0.1165
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_17.wav,False,0.94775,0.0,False,True,JSON Parsing Error,-25.84,100.0,0.0591,0.1228
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_18.wav,True,0.55664,7.0,True,False,The recording has some background noise but is generally clear and easy to listen to.,-21.36,100.0,0.0241,0.095
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_19.wav,True,0.52148,7.0,True,False,The recording has some background noise but is generally clear and well-balanced.,-25.14,100.0,0.082,0.1834
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_2.wav,True,0.56006,7.0,True,False,The recording has some background noise but is generally clear and well-balanced in frequency response.,-21.99,100.0,0.0538,0.1762
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_21.wav,True,0.50684,7.0,True,False,The recording has some background noise but is otherwise clear and easy to listen to.,-21.33,100.0,0.0225,0.0729
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_22.wav,True,0.56543,8.0,True,False,The recording has good acoustics but there is some distortion towards the end.,-19.37,100.0,0.037,0.1111
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_23.wav,True,0.55029,7.0,True,False,The recording has some background noise but is generally clear and distinct.,-19.98,100.0,0.0801,0.1347
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_24.wav,False,0.42822,0.0,False,True,JSON Parsing Error,-23.93,100.0,0.0453,0.0936
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_25.wav,True,0.52637,7.0,True,False,The recording has some distortion but is generally clear and easy to listen to.,-24.37,100.0,0.0807,0.1943
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_26.wav,True,0.42358,8.0,True,False,"The recording has minimal background noise and is relatively clear, with a slight distortion in the lower frequencies typical of soulful piano music.",-24.03,100.0,0.1006,0.1811
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_27.wav,True,0.67285,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the clarity of the chiptune 8-bit music.,-20.93,100.0,0.0418,0.1344
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_28.wav,True,0.44141,7.0,True,False,The recording has some mild background noise but is otherwise clear and easy to listen to.,-22.69,100.0,0.0411,0.1462
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_29.wav,True,0.50098,8.0,True,False,"The recording has minimal background noise and is relatively clear, with only a slight distortion in the higher frequencies.",-22.91,100.0,0.0462,0.1208
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_3.wav,True,0.52295,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the main sound which is an acoustic bossa nova guitar.,-25.99,100.0,0.1229,0.1972
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_30.wav,True,0.35742,8.0,True,False,"The recording has minimal background noise and is relatively clear, presenting an overall good acoustical quality.",-25.71,100.0,0.0359,0.1238
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_31.wav,True,0.65723,7.0,True,False,The recording has some background noise but is generally clear and well-balanced.,-19.86,100.0,0.052,0.1282
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_32.wav,True,0.35205,7.0,True,False,The recording has some background noise but is generally clear and distinct.,-28.35,100.0,0.1201,0.1602
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_33.wav,True,0.50049,7.0,True,False,The recording has some background noise but is generally clear and well-balanced.,-26.64,100.0,0.0174,0.0861
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_34.wav,False,0.39795,0.0,False,True,JSON Parsing Error,-24.87,100.0,0.047,0.1676
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_35.wav,True,0.38745,7.0,True,False,The recording has some background noise but is generally clear and energetic.,-23.71,100.0,0.024,0.1449
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_36.wav,True,0.48413,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the music.,-23.21,100.0,0.1173,0.1858
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_37.wav,True,0.52295,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the music.,-19.74,100.0,0.0263,0.1123
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_38.wav,True,0.68848,8.0,True,False,The recording has some background noise but is generally clear and well-balanced.,-23.13,100.0,0.0497,0.1
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_39.wav,True,0.56201,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the music.,-27.04,100.0,0.1435,0.1908
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_4.wav,True,0.50098,8.0,True,False,The recording has some background noise but it is not severe and does not obscure the main acoustic guitar sound.,-26.79,100.0,0.1484,0.2128
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_40.wav,True,0.72656,8.0,True,False,The recording has some background noise but is generally clear and has good acoustics.,-22.27,100.0,0.0663,0.1263
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_41.wav,True,0.56348,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the main music which is an afrobeat track with complex percussion polyrhythms.,-23.13,100.0,0.1425,0.185
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_42.wav,True,0.82959,8.0,True,False,The recording has some background noise but is generally clear and has good acoustic quality.,-23.61,100.0,0.1144,0.1779
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_43.wav,True,0.52393,7.0,True,False,The recording has some background noise but is generally clear and distinct.,-21.55,100.0,0.0573,0.1172
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_44.wav,True,0.55664,8.0,True,False,"The acapella choral harmony is performed in a grand hall which likely adds reverb and ambience to the sound, but there are no harsh digital static, white noise, heavy buzzing, or corrupted audio that would negatively impact clarity.",-22.31,100.0,0.0142,0.0939
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_45.wav,True,0.45581,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the music.,-22.4,100.0,0.1043,0.1606
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_46.wav,True,0.73877,8.0,True,False,"The recording has minimal background noise and is relatively clear, presenting an overall sound quality of 8 out of 10.",-20.72,100.0,0.0796,0.1365
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_47.wav,True,0.59375,8.0,True,False,The recording has some background noise but is otherwise clear and well-balanced in frequency response.,-20.86,100.0,0.0689,0.2107
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_48.wav,True,0.70605,8.0,True,False,"The recording has good acoustics, with minimal background noise and a clear soundstage.",-21.01,100.0,0.0743,0.1577
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_49.wav,False,0.59375,0.0,False,True,JSON Parsing Error,-21.37,100.0,0.0483,0.1276
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_5.wav,True,0.42456,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the clarity of the music.,-22.34,100.0,0.0142,0.0578
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_50.wav,True,0.53076,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the clarity of the music.,-21.88,100.0,0.0454,0.1639
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_51.wav,True,0.69824,8.0,True,False,"The recording has minimal background noise and is relatively clear, with a slightly muffled sound due to the acoustics.",-20.22,100.0,0.0483,0.1443
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_52.wav,True,0.4812,8.0,True,False,The recording has some background noise but is generally clear and distinct.,-25.86,100.0,0.1039,0.1708
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_53.wav,True,0.6665,7.0,True,False,The recording has some background noise but is generally clear and has a good acoustic quality.,-24.79,100.0,0.0727,0.2009
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_54.wav,True,0.52539,7.0,True,False,The recording has some background noise but is generally clear and well-balanced in frequency response.,-20.9,100.0,0.0692,0.1606
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_55.wav,True,0.62891,8.0,True,False,The recording has some background noise but is generally clear and well-balanced in frequency response.,-20.06,100.0,0.045,0.131
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_56.wav,True,0.57178,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the main elements of the composition.,-28.14,100.0,0.0557,0.1194
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_57.wav,True,0.53418,8.0,True,False,The audio has some background noise but it is not severe and does not obscure the clarity of the kora melody.,-22.25,100.0,0.0537,0.1367
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_58.wav,True,0.35059,8.0,True,False,The recording has some background noise but is generally clear and well-balanced.,-23.81,100.0,0.0156,0.0936
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_59.wav,True,0.65771,7.0,True,False,The recording has some distortion and reverb but is generally clear and easy to listen to.,-25.28,100.0,0.0917,0.1741
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_6.wav,False,0.78662,0.0,False,True,JSON Parsing Error,-25.01,100.0,0.0199,0.0714
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_60.wav,True,0.62402,8.0,True,False,The recording has some background noise but it is not severe and does not obscure the music.,-16.56,100.0,0.0145,0.0702
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_61.wav,True,0.47021,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the music.,-21.41,100.0,0.0166,0.1114
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_62.wav,True,0.56152,8.0,True,False,The recording has some background noise but is generally clear and well-balanced in frequency response.,-21.26,100.0,0.0157,0.1093
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_63.wav,True,0.36938,7.0,True,False,The recording has some background noise but is generally clear and easy to listen to.,-26.64,100.0,0.0805,0.1651
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_64.wav,True,0.57178,8.0,True,False,The recording has some background noise but is generally clear and distinct.,-23.88,100.0,0.0288,0.0902
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_65.wav,True,0.58154,7.0,True,False,The recording has some background noise but is generally clear and well-balanced.,-20.61,100.0,0.0554,0.1504
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_66.wav,True,0.57031,8.0,True,False,The recording has some background noise but is generally clear and well-balanced.,-19.14,100.0,0.0065,0.1103
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_67.wav,True,0.70605,7.0,True,False,The recording has some distortion and background noise but is generally clear and easy to listen to.,-18.92,100.0,0.0329,0.1053
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_68.wav,True,0.41772,8.0,True,False,"The recording has minimal background noise and is relatively clear, with only a slight distortion in the higher frequencies.",-24.98,100.0,0.0801,0.1726
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_69.wav,False,0.67285,0.0,False,True,JSON Parsing Error,-20.95,100.0,0.0404,0.1076
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_7.wav,True,0.58936,8.0,True,False,"The recording has minimal background noise and is relatively clear, presenting an overall good acoustics quality.",-27.13,100.0,0.0818,0.1581
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_70.wav,True,0.45605,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the music.,-22.91,100.0,0.0438,0.1628
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_71.wav,True,0.53857,8.0,True,False,The recording has some background noise but it is not severe and does not obscure the clarity of the music.,-22.74,100.0,0.032,0.0976
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_72.wav,True,0.52832,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the music.,-22.59,100.0,0.0518,0.1039
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_73.wav,True,0.3999,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the main elements of the music.,-28.43,100.0,0.23,0.2861
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_74.wav,True,0.45776,8.0,True,False,The recording has some background noise but is generally clear and well-balanced in frequency.,-25.49,100.0,0.0579,0.1585
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_75.wav,True,0.77344,7.0,True,False,The recording has some distortion but is generally clear and free of severe background noise.,-26.93,100.0,0.1734,0.2143
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_76.wav,True,0.67383,8.0,True,False,The recording has some background noise but is generally clear and has good acoustic quality.,-25.55,100.0,0.0965,0.148
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_77.wav,True,0.5874,7.0,True,False,The recording has some background noise but is otherwise clear and easy to listen to.,-25.69,100.0,0.0919,0.1607
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_78.wav,True,0.57227,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the clarity of the music.,-25.12,100.0,0.075,0.1919
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_79.wav,True,0.55908,7.0,True,False,The recording has some background noise but is generally clear and easy to listen to.,-25.12,100.0,0.0557,0.1329
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_8.wav,True,0.78809,8.0,True,False,The recording has some background noise but is generally clear and has a good acoustic quality.,-24.69,100.0,0.0334,0.1106
+0.0,none,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_9.wav,True,0.87061,7.0,True,False,The recording has some background noise but is generally clear and well-balanced in frequency response.,-20.63,100.0,0.0309,0.1336
+0.0,harsh_hiss,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_12.wav,True,0.42749,7.0,True,False,The recording has some background noise but it is not severe and does not obscure the clarity of the music.,-27.82,70.0,0.2346,0.3024
+0.0,harsh_hiss,C:\Users\sepan\sparke-photo to audio\tango_sounds\tango_jazz_20.wav,True,0.26904,8.0,True,False,"The recording has minimal background noise and is relatively clear, presenting an overall soothing and ambient atmosphere suitable for relaxation.",-32.25,70.0,0.2182,0.3009

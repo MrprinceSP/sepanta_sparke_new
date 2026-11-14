@@ -845,6 +845,7 @@ class AudioLDM2Pipeline(DiffusionPipeline):
         negative_prompt: Optional[Union[str, List[str]]] = None,
         num_waveforms_per_prompt: Optional[int] = 1,
         eta: float = 0.0,
+        diversity_coefficient: float = 1.0,
         generator: Optional[Union[torch.Generator, List[torch.Generator]]] = None,
         latents: Optional[torch.Tensor] = None,
         prompt_embeds: Optional[torch.Tensor] = None,
@@ -863,7 +864,8 @@ class AudioLDM2Pipeline(DiffusionPipeline):
         rke_guided_sampler: Optional[Any] = None,
         criteria_guidance_scale: float = 0.0,
         guidance_freq: int = 1,
-        rff_dim: int = 3000,
+        rff_dim: int = 2048,
+        G_interval:int =40,
         criteria: str = 'vscore_clap',
         clap_for_guidance: Optional[Any] = None,
         F_M: Optional[torch.Tensor] = None,
@@ -904,6 +906,8 @@ class AudioLDM2Pipeline(DiffusionPipeline):
             eta (`float`, *optional*, defaults to 0.0):
                 Corresponds to parameter eta (η) from the [DDIM](https://arxiv.org/abs/2010.02502) paper. Only applies
                 to the [`~schedulers.DDIMScheduler`], and is ignored in other schedulers.
+            diversity_coefficient (`float`, *optional*, defaults to 1.0):
+                A coefficient that controls the diversity of the generated waveforms. Higher values lead to more diverse outputs.
             generator (`torch.Generator` or `List[torch.Generator]`, *optional*):
                 A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make
                 generation deterministic.
@@ -1104,10 +1108,10 @@ class AudioLDM2Pipeline(DiffusionPipeline):
                                 logger_.info("Skipping gradient update due to NaN or Inf in grads.")
                         else:
                             # Update latents with the computed diversity/alignment gradient
-                            if(i%40==0):
+                            if(i%G_interval==0):
                                 F_M_prev = F_M
                                 F_T_prev = F_T
-                                grads = grads*2
+                                grads = grads * diversity_coefficient
                                 latents = latents + grads
 
                             F_M= F_M_prev

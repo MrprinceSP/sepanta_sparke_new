@@ -179,7 +179,7 @@ class RKEGuidedSampling:
         return F_, M_
 
     def get_rank(self, M, M_text=None, feature_m=None, feature_t=None, kernel='cosine', sigma_image=None,
-                 sigma_text=None, n_samples=50_000, batch_size=256, rff_dim=3000,omegas_x=None, omegas_y=None):
+                 sigma_text=None, n_samples=50_000, batch_size=256, rff_dim=2048,omegas_x=None, omegas_y=None):
         """
         Calculate the diversity term for Diffusion Model guidance.
 
