@@ -21,7 +21,7 @@ REF_JAZZ_DIR = r"C:\Users\sepan\sparke-photo to audio\reference-jazz"
 
 
 approaches =["cond-vendi-FKEA","cond-vendi-CSA","cond-vendi","cond-rke"]
-dir_list= [f"sparke_audioldm2_audio_outputs_big_batch_{approaches[i]}" for i in range(len(approaches))]
+dir_list= [f"sparke_audioldm2_audio_outputs_big_batch_rke_{i}" for i in range(5)]
 
 
 
@@ -1059,6 +1059,7 @@ prompts1 = [
     "Late-night radio ballad, lush muted horn section, gentle brushed snare, romantic atmosphere"
 ]
 """
+
 
 # ==============================================================================
 # 4. Main Execution Pipeline Across All Directories

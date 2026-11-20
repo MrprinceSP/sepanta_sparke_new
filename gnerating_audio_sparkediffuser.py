@@ -1082,12 +1082,12 @@ approaches =["cond-vendi-FKEA","cond-vendi-CSA","cond-vendi","cond-rke"]
 Gs=[1,50,40,40]
 dive_coefs=[1.0,2.0,1.7,2.0]
 # 3. SET UP RKE GUIDED SAMPLING
-
-for i in range(4):
+##5 for rke appraoch for now
+for i in range(5):
     print(f"Running SPARKE AudioLDM2 Generation with approach: {approaches[i]}")
     # 4. GUIDANCE PARAMETERS
     rke_guided_sampler = RKEGuidedSampling(
-        algorithm= approaches[i], 
+        algorithm= "cond-rke", 
         kernel="gaussian",
         sigma_image=0.6,
         sigma_text=0.3,
@@ -1121,7 +1121,7 @@ for i in range(4):
 
     
 
-    output_dir = f"sparke_audioldm2_audio_outputs_big_batch_{approaches[i]}"
+    output_dir = f"sparke_audioldm2_audio_outputs_big_batch_rke_{i}"
     os.makedirs(output_dir, exist_ok=True)
 
     # 6. GENERATE AND SAVE AUDIO
