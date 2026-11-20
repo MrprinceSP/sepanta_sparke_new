@@ -1,3 +1,5 @@
+import csv
+from datetime import datetime
 import os
 import glob
 import numpy as np
@@ -17,7 +19,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # ==============================================================================
 # 1. Configuration & Directories
 # ==============================================================================
-REF_JAZZ_DIR = r"C:\Users\sepan\sparke-photo to audio\reference-jazz"
+REF_JAZZ_DIR = r"reference-jazz"
 
 
 approaches =["cond-vendi-FKEA","cond-vendi-CSA","cond-vendi","cond-rke"]
@@ -1060,18 +1062,32 @@ prompts1 = [
 ]
 """
 
+import csv
 
 # ==============================================================================
 # 4. Main Execution Pipeline Across All Directories
 # ==============================================================================
 if __name__ == "__main__":
+    TXT_OUTPUT = "evaluation_results.txt"
+    CSV_OUTPUT = "evaluation_results.csv"
+    CSV_FIELDS = ["folder", "count", "clap_score", "clap_fad", "panns_div_mean", "panns_div_std", "cond_vendi"]
+
+    # Initialize output files so results are saved incrementally after each folder
+    with open(TXT_OUTPUT, "w", encoding="utf-8") as f:
+        f.write("EVALUATION RESULTS LOG\n")
+        f.write("=" * 70 + "\n")
+
+    with open(CSV_OUTPUT, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=CSV_FIELDS)
+        writer.writeheader()
+
     # --- Step A: Load Models Once ---
     print(f"\nLoading CLAP model on device: {device}...")
     clap_model = laion_clap.CLAP_Module(enable_fusion=False)
     clap_model.load_ckpt(model_id=1)
     clap_model.to(device)
 
-    print(f"Loading PANNs AudioTagging model...")
+    print("Loading PANNs AudioTagging model...")
     panns_device = "cuda" if device.type == "cuda" else "cpu"
     panns_model = AudioTagging(checkpoint_path=None, device=panns_device)
 
@@ -1096,13 +1112,11 @@ if __name__ == "__main__":
     # --- Step C: Loop Through Each Directory in `dir_list` ---
     for dir_idx, gen_dir in enumerate(dir_list, start=1):
         folder_name = os.path.basename(gen_dir)
-        print("\n" + "="*70)
-        print(f" [{dir_idx}/{len(dir_list)}] EVALUATING: {folder_name}")
-        print(f" Path: {gen_dir}")
-        print("="*70)
+        print(f"[{dir_idx}/{len(dir_list)}] Processing: {folder_name}...")
 
         if not os.path.exists(gen_dir):
-            print(f"[Error] Directory does not exist: {gen_dir}")
+            with open(TXT_OUTPUT, "a", encoding="utf-8") as f:
+                f.write(f"\n[Error] Directory does not exist: {gen_dir}\n")
             continue
 
         raw_audio_paths = []
@@ -1120,13 +1134,12 @@ if __name__ == "__main__":
                 all_audio_paths.append(path)
                 chosen_prompts.append(prompt)
 
-        print(f"Matched {len(all_audio_paths)} valid generated audio files.")
         if len(all_audio_paths) == 0:
-            print(f"[Error] No valid audio files found in directory.")
+            with open(TXT_OUTPUT, "a", encoding="utf-8") as f:
+                f.write(f"\n[Error] No valid audio files found in directory: {gen_dir}\n")
             continue
 
         # 1. Compute CLAP Score (Text-Audio Alignment)
-        print("1/4 Computing CLAP Score...")
         with torch.no_grad():
             audio_embeds = clap_model.get_audio_embedding_from_filelist(x=all_audio_paths, use_tensor=True)
             if not isinstance(audio_embeds, torch.Tensor):
@@ -1143,7 +1156,6 @@ if __name__ == "__main__":
             clap_score = (audio_norm * text_norm).sum(dim=-1).mean().item()
 
         # 2. Compute CLAP-FAD Score
-        print("2/4 Computing CLAP-FAD...")
         if mu_ref is not None and sigma_ref is not None:
             fad_score = compute_clap_fad_from_stats(
                 mu_ref=mu_ref,
@@ -1155,32 +1167,43 @@ if __name__ == "__main__":
             fad_score = None
 
         # 3. Compute PANNs Pairwise Diversity Score
-        print("3/4 Computing PANNs Pairwise Diversity...")
         panns_result = compute_panns_pairwise_diversity(
             gen_paths=all_audio_paths,
             panns_model=panns_model
         )
-
         panns_mean = panns_result[0] if panns_result is not None else None
         panns_std = panns_result[1] if panns_result is not None else None
 
         # 4. Compute Conditional Vendi Score
-        print("4/4 Computing Conditional Vendi Score...")
         try:
             evaluator = ConditionalEvaluation(sigma=0.5)
             cond_ent_results = evaluator.conditional_entropy(X=audio_embeds, Y=text_embeds, order=1)
             cond_entropy = cond_ent_results[0]
             cond_vendi_score = torch.exp(cond_entropy).item()
         except Exception as e:
-            print(f"[Warning] Conditional Vendi Score failed: {e}")
+            print(f"[Warning] Conditional Vendi Score failed for {folder_name}: {e}")
             cond_vendi_score = None
 
-        # Print per-folder summary
-        print(f"\n--- Results for {folder_name} ---")
-        print(f" CLAP Score      : {clap_score:.4f}")
-        print(f" CLAP-FAD        : {fad_score:.4f}" if fad_score is not None else " CLAP-FAD        : FAILED")
-        print(f" PANNs Diversity : {panns_mean:.4f} ± {panns_std:.4f}" if panns_mean is not None else " PANNs Diversity : FAILED")
-        print(f" Cond-Vendi      : {cond_vendi_score:.4f}" if cond_vendi_score is not None else " Cond-Vendi      : FAILED")
+        # Write per-folder results to TXT
+        with open(TXT_OUTPUT, "a", encoding="utf-8") as f:
+            f.write(f"\n--- Results for {folder_name} (Valid files: {len(all_audio_paths)}) ---\n")
+            f.write(f" CLAP Score      : {clap_score:.4f}\n")
+            f.write(f" CLAP-FAD        : {fad_score:.4f}\n" if fad_score is not None else " CLAP-FAD        : FAILED\n")
+            f.write(f" PANNs Diversity : {panns_mean:.4f} ± {panns_std:.4f}\n" if panns_mean is not None else " PANNs Diversity : FAILED\n")
+            f.write(f" Cond-Vendi      : {cond_vendi_score:.4f}\n" if cond_vendi_score is not None else " Cond-Vendi      : FAILED\n")
+
+        # Write per-folder row to CSV
+        with open(CSV_OUTPUT, "a", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=CSV_FIELDS)
+            writer.writerow({
+                "folder": folder_name,
+                "count": len(all_audio_paths),
+                "clap_score": f"{clap_score:.4f}" if clap_score is not None else "N/A",
+                "clap_fad": f"{fad_score:.4f}" if fad_score is not None else "N/A",
+                "panns_div_mean": f"{panns_mean:.4f}" if panns_mean is not None else "N/A",
+                "panns_div_std": f"{panns_std:.4f}" if panns_std is not None else "N/A",
+                "cond_vendi": f"{cond_vendi_score:.4f}" if cond_vendi_score is not None else "N/A",
+            })
 
         results_summary.append({
             "folder": folder_name,
@@ -1193,22 +1216,45 @@ if __name__ == "__main__":
         })
 
     # ==============================================================================
-    # 5. Final Grand Summary Table
+    # 5. Write Final Grand Summary Table to TXT & Mean/Std Row to CSV
     # ==============================================================================
-    print("\n" + "="*105)
-    print("                                     FINAL EVALUATION SUMMARY")
-    print("="*105)
-    header = f"{'Folder Name':<50} | {'Count':<5} | {'CLAP ↑':<8} | {'CLAP-FAD ↓':<10} | {'PANNs Div ↑':<15} | {'CondVendi ↑':<12}"
-    print(header)
-    print("-" * len(header))
+    with open(TXT_OUTPUT, "a", encoding="utf-8") as f:
+        f.write("\n" + "=" * 105 + "\n")
+        f.write("                                     FINAL EVALUATION SUMMARY\n")
+        f.write("=" * 105 + "\n")
+        header = f"{'Folder Name':<50} | {'Count':<5} | {'CLAP ↑':<8} | {'CLAP-FAD ↓':<10} | {'PANNs Div ↑':<15} | {'CondVendi ↑':<12}"
+        f.write(header + "\n")
+        f.write("-" * len(header) + "\n")
 
-    for res in results_summary:
-        folder_str = res['folder'][:50]
-        cnt_str = str(res['count'])
-        clap_str = f"{res['clap']:.4f}" if res['clap'] is not None else "N/A"
-        fad_str = f"{res['fad']:.4f}" if res['fad'] is not None else "N/A"
-        panns_str = f"{res['panns_mean']:.4f}±{res['panns_std']:.3f}" if res['panns_mean'] is not None else "N/A"
-        cond_vendi_str = f"{res['cond_vendi']:.4f}" if res['cond_vendi'] is not None else "N/A"
+        for res in results_summary:
+            folder_str = res['folder'][:50]
+            cnt_str = str(res['count'])
+            clap_str = f"{res['clap']:.4f}" if res['clap'] is not None else "N/A"
+            fad_str = f"{res['fad']:.4f}" if res['fad'] is not None else "N/A"
+            panns_str = f"{res['panns_mean']:.4f}±{res['panns_std']:.3f}" if res['panns_mean'] is not None else "N/A"
+            cond_vendi_str = f"{res['cond_vendi']:.4f}" if res['cond_vendi'] is not None else "N/A"
 
-        print(f"{folder_str:<50} | {cnt_str:<5} | {clap_str:<8} | {fad_str:<10} | {panns_str:<15} | {cond_vendi_str:<12}")
-    print("="*105 + "\n")
+            f.write(f"{folder_str:<50} | {cnt_str:<5} | {clap_str:<8} | {fad_str:<10} | {panns_str:<15} | {cond_vendi_str:<12}\n")
+        f.write("=" * 105 + "\n")
+
+    if results_summary:
+        def mean_std_str(vals):
+            clean = [v for v in vals if v is not None]
+            if not clean:
+                return "N/A"
+            std = float(np.std(clean, ddof=1)) if len(clean) > 1 else 0.0
+            return f"{float(np.mean(clean)):.4f} ± {std:.4f}"
+
+        with open(CSV_OUTPUT, "a", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=CSV_FIELDS)
+            writer.writerow({
+                "folder": "MEAN +/- STD (ALL FOLDERS)",
+                "count": sum(r["count"] for r in results_summary),
+                "clap_score": mean_std_str([r["clap"] for r in results_summary]),
+                "clap_fad": mean_std_str([r["fad"] for r in results_summary]),
+                "panns_div_mean": mean_std_str([r["panns_mean"] for r in results_summary]),
+                "panns_div_std": "-",
+                "cond_vendi": mean_std_str([r["cond_vendi"] for r in results_summary]),
+            })
+
+    print(f"\nDone! Results saved to '{TXT_OUTPUT}' and '{CSV_OUTPUT}'.")
